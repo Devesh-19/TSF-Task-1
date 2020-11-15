@@ -83,6 +83,6 @@ app.get("/history", async(req, res)=>{
     res.render("history", {transactions});
 });
 
-app.listen(3000 || process.env.PORT, process.env.IP, ()=>{
+app.listen(3000 || process.env.PORT, ()=>{
     console.log("SERVER STARTED !");
 });
