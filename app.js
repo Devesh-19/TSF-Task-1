@@ -1,19 +1,16 @@
 
-//*************** Developed By : VARUN KUMAR **************//
-
 const { concatSeries } = require('async');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+require('dotenv').config();
 const User = require('./models/user');
 const Transaction = require('./models/transaction');
 
-//# DB - test //
-//# COLLECTION 1 - users //
-//# COLLECTION 2 - transactions //
+const url = process.env.URL;
 
-mongoose.connect('mongodb+srv://admin:admin123@cluster0.ejakg.mongodb.net/bank?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("MONGO CONNECTION OPEN!!!")
     })
@@ -34,7 +31,6 @@ app.get("/", (req, res)=>{
 
 app.get("/view", async (req, res)=>{
     const users = await User.find({})
-    console.log(users);
     res.render("view", {users});
 });
 
